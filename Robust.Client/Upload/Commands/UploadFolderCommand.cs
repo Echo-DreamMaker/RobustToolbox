@@ -54,7 +54,7 @@ public sealed partial class UploadFolderCommand : IConsoleCommand
         {
             await using var filestream = _resourceManager.UserData.Open(filepath, FileMode.Open);
             {
-                var sizeLimit = _configManager.GetCVar(CVars.ResourceUploadingLimitMb);
+                var sizeLimit = 25f; // _configManager.GetCVar(CVars.ResourceUploadingLimitMb); // # hardcoded
                 if (sizeLimit > 0f && filestream.Length * SharedNetworkResourceManager.BytesToMegabytes > sizeLimit)
                 {
                     shell.WriteError(Loc.GetString("uploadfolder-command-file-too-big", ("filename", filepath), ("sizeLimit", sizeLimit)));

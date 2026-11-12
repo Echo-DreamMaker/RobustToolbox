@@ -14,6 +14,10 @@ concurrency:
 
 jobs:
   build:
+    # Misfits fork: this check builds upstream space-station-14 master (which tracks the
+    # newest engine line) against this fork's engine, so it can only ever fail on a fork
+    # that lags behind upstream. Keep the workflow upstream-compatible and skip it here.
+    if: github.repository == 'space-wizards/RobustToolbox'
     runs-on: ubuntu-latest
     timeout-minutes: 30
 
